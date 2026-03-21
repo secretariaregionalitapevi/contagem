@@ -1481,7 +1481,7 @@ startConnectivityMonitoring();
 // Service Worker (apenas se não estiver em file://)
 if ("serviceWorker" in navigator && window.location.protocol !== 'file:') {
   window.addEventListener("load", () => {
-    navigator.serviceWorker.register("./sw.js?v=28")
+    navigator.serviceWorker.register("./sw.js?v=40")
       .then(registration => {
         console.log("✅ Service Worker registrado:", registration);
 

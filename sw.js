@@ -1,8 +1,8 @@
-const CACHE_NAME = "pwa-contagem-v35-mobile";
+const CACHE_NAME = "pwa-contagem-v40-mobile";
 const ASSETS = [
   "./",
   "./index.html", 
-  "./app.js?v=35",
+  "./app.js?v=40",
   "./manifest.json",
   "./ping.json",
   "./icons/icon-192.png",

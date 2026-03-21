@@ -119,10 +119,11 @@
     }
 
     .landing-logo {
-      width: 120px;
+      width: 240px;
+      max-width: 90%;
       height: auto;
       margin-bottom: 2rem;
-      filter: drop-shadow(0 10px 20px rgba(0,0,0,0.2));
+      filter: brightness(0) invert(1) drop-shadow(0 10px 20px rgba(0,0,0,0.2));
     }
 
     .landing-title {
@@ -1019,13 +1020,13 @@
       }
     }
   </style>
-    <script defer src="app.js?v=35"></script>
+    <script defer src="app.js?v=40"></script>
 </head>
 <body>
   <!-- Landing Page (Capa) -->
   <div id="landing-page" class="landing-page">
     <div class="landing-content">
-      <img src="icons/icon-512.png" alt="CCB" class="landing-logo">
+      <img src="assets/logo-ccb.png" alt="CCB" class="landing-logo">
       <h1 class="landing-title">SISTEMA CONTAGEM<br>MINISTÉRIO</h1>
       <p class="landing-subtitle">Regional Itapevi</p>
       <button id="entrar-btn" class="btn-primary btn-landing">
