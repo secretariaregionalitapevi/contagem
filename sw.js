@@ -1,10 +1,12 @@
-const CACHE_NAME = "pwa-contagem-v22-mobile";
+const CACHE_NAME = "pwa-contagem-v35-mobile";
 const ASSETS = [
   "./",
   "./index.html", 
-  "./app.js?v=23",
+  "./app.js?v=35",
   "./manifest.json",
-  "./ping.json"
+  "./ping.json",
+  "./icons/icon-192.png",
+  "./icons/icon-512.png"
 ];
 
 // Instalar Service Worker

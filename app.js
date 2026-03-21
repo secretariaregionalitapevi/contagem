@@ -1481,9 +1481,20 @@ startConnectivityMonitoring();
 // Service Worker (apenas se não estiver em file://)
 if ("serviceWorker" in navigator && window.location.protocol !== 'file:') {
   window.addEventListener("load", () => {
-    navigator.serviceWorker.register("./sw.js?v=12")
+    navigator.serviceWorker.register("./sw.js?v=28")
       .then(registration => {
         console.log("✅ Service Worker registrado:", registration);
+
+        // Detectar atualizações e recarregar
+        registration.addEventListener('updatefound', () => {
+          const newWorker = registration.installing;
+          newWorker.addEventListener('statechange', () => {
+            if (newWorker.state === 'installed' && navigator.serviceWorker.controller) {
+              console.log("♻️ Nova versão encontrada! Recarregando em 1s...");
+              setTimeout(() => window.location.reload(), 1000);
+            }
+          });
+        });
 
         // Para iOS, verificar se está funcionando
         if (isIOS) {
