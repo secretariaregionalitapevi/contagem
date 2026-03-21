@@ -1196,7 +1196,13 @@ function getSummaryData() {
       if (cargo === 'Ministério' && ministerio) {
         // Para ministério, usar o valor do campo ministério
         categoriaFinal = ministerio;
-        console.log(`  → Ministério detectado: "${ministerio}"`);
+        
+        // Normalização para Irmãs da Obra da Piedade
+        if (ministerio === 'Irmã da Piedade' || ministerio === 'Irmãs da Piedade' || ministerio === 'Irmãs da Obra da Piedade') {
+          categoriaFinal = 'Irmãs da Obra da Piedade';
+        }
+        
+        console.log(`  → Ministério detectado: "${ministerio}" (Normalizado: "${categoriaFinal}")`);
       } else if (cargo === 'Administração' && administracao) {
         // Para administração, usar o valor do campo administração
         categoriaFinal = administracao;
@@ -1241,6 +1247,7 @@ function getSummaryData() {
       encarregadosRegionaisCount: cargoStats['Encarregado Regional'] || 0,
       encarregadosLocaisCount: cargoStats['Encarregado Local'] || 0,
       examinadorasCount: cargoStats['Examinadora'] || 0,
+      irmaPiedadeCount: cargoStats['Irmãs da Obra da Piedade'] || 0,
       
       // ADMINISTRAÇÃO (ordem do relatório)
       secretariosMusicaCount: cargoStats['Secretário da Música'] || 0,

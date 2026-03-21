@@ -54,7 +54,7 @@
     .header {
       background: var(--primary);
       color: white;
-      padding: 2rem 0;
+      padding: 2.25rem 0 1.75rem;
       position: sticky;
       top: 0;
       z-index: 50;
@@ -63,52 +63,71 @@
     }
 
     .header-content {
-      max-width: 800px;
+      max-width: 600px;
       margin: 0 auto;
-      padding: 0 1.5rem;
+      padding: 0 1.25rem;
       display: flex;
+      flex-direction: column;
       align-items: center;
-      justify-content: center;
+      text-align: center;
+      gap: 1rem;
     }
 
     .header h1 {
       font-size: 1.5rem;
       font-weight: 700;
-      letter-spacing: -0.025em;
+      letter-spacing: -0.01em;
+      margin: 0;
+      text-transform: uppercase;
+      letter-spacing: 0.05em;
+    }
+
+    .header-subtitle {
+      font-size: 0.85rem;
+      opacity: 0.8;
+      font-weight: 500;
+      margin-top: -0.25rem;
+      text-transform: uppercase;
+      letter-spacing: 0.1em;
     }
 
 
     /* Main Content */
     .container {
-      max-width: 800px;
+      max-width: 600px;
       margin: 0 auto;
-      padding: 2rem 1.5rem;
+      padding: 1.5rem 1.25rem 3rem;
     }
 
     .card {
       background: var(--surface);
-      border-radius: var(--radius-xl);
-      box-shadow: var(--shadow-premium);
-      border: 1px solid var(--border-light);
+      border-radius: 16px;
+      box-shadow: 0 10px 25px rgba(0,0,0,0.05);
+      border: 1px solid rgba(0,0,0,0.05);
       overflow: hidden;
     }
 
     .card-header {
-      padding: 1.5rem 1.5rem 0;
+      padding: 2.5rem 1.5rem 1.5rem;
+      text-align: center;
+      background: transparent;
+      border: none;
     }
 
     .card-title {
-      font-size: 1.25rem;
-      font-weight: 600;
-      color: var(--text-primary);
+      font-size: 1.5rem;
+      font-weight: 700;
+      color: var(--primary);
       margin-bottom: 0.5rem;
+      letter-spacing: -0.01em;
     }
 
     .card-subtitle {
-      font-size: 0.875rem;
+      font-size: 0.9rem;
       color: var(--text-secondary);
-      margin-top: 0.5rem;
-      margin-bottom: 1.5rem;
+      margin: 0 auto;
+      max-width: 80%;
+      line-height: 1.4;
     }
 
     .card-body {
@@ -339,6 +358,7 @@
       margin: 2rem -1.25rem 0;
     }
 
+
     .btn-save-compact {
       width: fit-content !important;
       padding: 0.75rem 2.5rem;
@@ -374,11 +394,34 @@
     .queue-badge.pending {
       background: #fff4e5;
       color: #b45309;
+      border: 1px solid #ffedd5;
     }
 
     .queue-badge.syncing {
       background: #dbeafe;
       color: #1e40af;
+      border: 1px solid #bfdbfe;
+    }
+
+    .queue-badge.synced {
+      background: #d1fae5;
+      color: #065f46;
+      border: 1px solid #a7f3d0;
+      animation: bounce 0.5s ease;
+    }
+
+    @keyframes bounce {
+      0%, 100% { transform: translateY(0); }
+      50% { transform: translateY(-5px); }
+    }
+
+    @keyframes spin {
+      from { transform: rotate(0deg); }
+      to { transform: rotate(360deg); }
+    }
+
+    .spin {
+      animation: spin 1s linear infinite;
     }
 
     .status-indicator-footer {
@@ -595,22 +638,27 @@
     /* Tabs */
     .tabs {
       display: flex;
-      background: var(--surface);
-      border-radius: var(--radius-lg) var(--radius-lg) 0 0;
-      border-bottom: 1px solid var(--border-light);
-      margin-bottom: 0;
+      justify-content: center;
+      background: #fff;
+      margin-bottom: 1rem;
+      border-bottom: 1px solid var(--border);
     }
 
     .tab-button {
       flex: 1;
-      padding: 1rem;
+      padding: 1rem 0.5rem;
       border: none;
-      background: transparent;
+      background: none;
+      font-size: 0.9rem;
+      font-weight: 600;
       color: var(--text-secondary);
-      font-weight: 500;
       cursor: pointer;
-      transition: all 0.2s ease;
+      transition: all 0.2s;
       border-bottom: 3px solid transparent;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 0.5rem;
     }
 
     .tab-button:hover {
@@ -751,8 +799,8 @@
     .ministry-stats,
     .admin-stats {
       display: grid;
-      grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
-      gap: 0.75rem;
+      grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
+      gap: 1rem;
     }
 
     .cargo-stats-single {
@@ -789,17 +837,19 @@
       display: flex;
       justify-content: space-between;
       align-items: center;
-      padding: 0.75rem 1rem;
+      padding: 0.85rem 1rem;
       background: var(--surface);
       border: 1px solid var(--border);
       border-radius: var(--radius-md);
       transition: all 0.2s ease;
+      min-height: 4.5rem; /* Ensure consistent height for multiline labels */
+      gap: 0.5rem;
     }
 
     .stat-item:hover {
       border-color: var(--primary);
       background: #f8faff;
-      transform: translateY(-1px);
+      transform: translateY(-2px);
       box-shadow: var(--shadow-sm);
     }
 
@@ -868,16 +918,11 @@
         grid-template-columns: 1fr;
       }
       
-      .cargo-stats-single {
-        grid-template-columns: repeat(auto-fit, minmax(120px, 1fr));
-      }
-      
-      .ministry-stats-single {
-        grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
-      }
-      
+      .cargo-stats-single,
+      .ministry-stats-single,
       .admin-stats-single {
-        grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
+        grid-template-columns: repeat(auto-fit, minmax(160px, 1fr));
+        gap: 0.75rem;
       }
       
       .summary-actions {
@@ -895,10 +940,9 @@
 <body>
   <header class="header">
     <div class="header-content">
-      <div style="display: flex; align-items: center; gap: 1.5rem;">
-        <img src="assets/logo-ccb.png" alt="CCB" style="height: 40px; filter: brightness(0) invert(1);">
-        <h1 style="font-size: 1.25rem; font-weight: 700;">Sistema de Contagem</h1>
-      </div>
+      <img src="assets/logo-ccb.png" alt="CCB" style="height: 82px; filter: brightness(0) invert(1);">
+      <h1>Sistema Contagem Ministério</h1>
+      <p class="header-subtitle">Regional Itapevi</p>
     </div>
   </header>
 
@@ -917,13 +961,13 @@
     <div class="tab-content active" id="register-tab">
     <div class="card">
         <div class="card-header">
-          <h2 class="card-title">Registro de Participante</h2>
-          <p class="card-subtitle">Selecione as informações do participante para registrar a presença</p>
+          <h2 class="card-title">Registro de Presença</h2>
+          <p class="card-subtitle">Selecione as informações para registrar a presença</p>
         </div>
 
       <div class="card-body">
         <!-- Cargo Selection -->
-        <div class="form-group">
+        <div class="form-group" style="margin-top: 1rem;">
           <label class="form-label required">Cargo</label>
           <div class="radio-group" role="radiogroup" aria-label="Selecione o cargo">
             <label class="radio-option">
