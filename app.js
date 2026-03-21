@@ -1520,14 +1520,49 @@ if ("serviceWorker" in navigator && window.location.protocol !== 'file:') {
       })
       .catch(error => {
         console.error("❌ Erro ao registrar Service Worker:", error);
-        if (isIOS) {
-          console.log("🍎 Erro comum no iOS - Service Worker pode não funcionar corretamente");
-        }
       });
   });
-} else {
-  console.log("⚠️ Service Worker não disponível (file:// protocol)");
 }
+
+// Lógica da Capa (Landing Page)
+document.addEventListener('DOMContentLoaded', () => {
+  const entrarBtn = document.getElementById('entrar-btn');
+  const landingPage = document.getElementById('landing-page');
+  const appContent = document.getElementById('app-content');
+
+  // Verificar se já entrou nesta sessão
+  if (sessionStorage.getItem('app_entered') === 'true') {
+     if (landingPage) landingPage.style.display = 'none';
+     if (appContent) {
+       appContent.style.display = 'block';
+       appContent.classList.add('fade-in');
+     }
+  }
+
+  if (entrarBtn && landingPage && appContent) {
+    entrarBtn.addEventListener('click', () => {
+      // Pequeno feedback de clique
+      entrarBtn.style.transform = 'scale(0.95)';
+      
+      setTimeout(() => {
+        landingPage.style.opacity = '0';
+        landingPage.style.pointerEvents = 'none';
+        
+        setTimeout(() => {
+          landingPage.style.display = 'none';
+          appContent.style.display = 'block';
+          appContent.classList.add('fade-in');
+          
+          // Salvar estado na sessão
+          sessionStorage.setItem('app_entered', 'true');
+          
+          // Rolagem para o topo (garantia)
+          window.scrollTo(0, 0);
+        }, 500);
+      }, 100);
+    });
+  }
+});
 
 // === FUNÇÕES DE ESTATÍSTICAS E RESUMO ===
 

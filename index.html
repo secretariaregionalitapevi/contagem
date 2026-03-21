@@ -57,43 +57,124 @@
     .header {
       background: var(--primary);
       color: white;
-      padding: 2.25rem 0 1.75rem;
-      position: sticky;
-      top: 0;
-      z-index: 50;
+      text-align: center;
+      padding: 1.25rem 0;
       box-shadow: var(--shadow-md);
-      border-bottom: 1px solid rgba(255,255,255,0.1);
+      transition: all 0.3s ease;
     }
 
     .header-content {
       max-width: 600px;
       margin: 0 auto;
-      padding: 0 1.25rem;
+      padding: 0 1.5rem;
       display: flex;
-      flex-direction: column;
       align-items: center;
-      text-align: center;
-      gap: 1rem;
+      justify-content: center;
+      gap: 1.25rem;
     }
 
-    .header h1 {
-      font-size: 1.5rem;
+    .header-logo-compact {
+      height: 48px;
+      filter: brightness(0) invert(1);
+    }
+
+    .header-text-compact {
+      text-align: left;
+    }
+
+    .compact-title {
+      font-size: 1.15rem;
       font-weight: 700;
-      letter-spacing: -0.01em;
-      margin: 0;
-      text-transform: uppercase;
-      letter-spacing: 0.05em;
+      letter-spacing: 0.5px;
+      margin-bottom: 2px;
     }
 
     .header-subtitle {
       font-size: 0.85rem;
-      opacity: 0.8;
-      font-weight: 500;
-      margin-top: -0.25rem;
-      text-transform: uppercase;
-      letter-spacing: 0.1em;
+      opacity: 0.9;
+      font-weight: 400;
     }
 
+    /* Landing Page Style */
+    .landing-page {
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      background: linear-gradient(135deg, #1a4d7c 0%, #0f2e4a 100%);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      z-index: 9999;
+      color: white;
+      text-align: center;
+      transition: opacity 0.5s ease, transform 0.5s ease;
+    }
+
+    .landing-content {
+      max-width: 400px;
+      padding: 2.5rem;
+      animation: fadeInScale 0.8s ease-out;
+    }
+
+    .landing-logo {
+      width: 120px;
+      height: auto;
+      margin-bottom: 2rem;
+      filter: drop-shadow(0 10px 20px rgba(0,0,0,0.2));
+    }
+
+    .landing-title {
+      font-size: 1.75rem;
+      font-weight: 800;
+      margin-bottom: 0.75rem;
+      letter-spacing: 1px;
+      line-height: 1.3;
+    }
+
+    .landing-subtitle {
+      font-size: 1.1rem;
+      opacity: 0.8;
+      margin-bottom: 2.5rem;
+    }
+
+    .btn-landing {
+      width: 100%;
+      padding: 1.25rem;
+      font-size: 1.1rem;
+      font-weight: 700;
+      background: #ffffff;
+      color: #1a4d7c;
+      border: none;
+      box-shadow: 0 15px 30px rgba(0,0,0,0.2);
+      transition: all 0.3s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+    }
+
+    .btn-landing:hover {
+      background: #f8fafc;
+      transform: translateY(-5px);
+      box-shadow: 0 20px 40px rgba(0,0,0,0.3);
+    }
+
+    .btn-landing:active {
+      transform: scale(0.98);
+    }
+
+    @keyframes fadeInScale {
+      from { opacity: 0; transform: scale(0.9); }
+      to { opacity: 1; transform: scale(1); }
+    }
+
+    /* Animations */
+    #app-content.fade-in {
+      animation: fadeIn 0.5s ease-out;
+    }
+
+    @keyframes fadeIn {
+      from { opacity: 0; }
+      to { opacity: 1; }
+    }
 
     /* Main Content */
     .container {
@@ -941,15 +1022,30 @@
     <script defer src="app.js?v=35"></script>
 </head>
 <body>
-  <header class="header">
-    <div class="header-content">
-      <img src="assets/logo-ccb.png" alt="CCB" style="height: 82px; filter: brightness(0) invert(1);">
-      <h1>Sistema Contagem Ministério</h1>
-      <p class="header-subtitle">Regional Itapevi</p>
+  <!-- Landing Page (Capa) -->
+  <div id="landing-page" class="landing-page">
+    <div class="landing-content">
+      <img src="icons/icon-512.png" alt="CCB" class="landing-logo">
+      <h1 class="landing-title">SISTEMA CONTAGEM<br>MINISTÉRIO</h1>
+      <p class="landing-subtitle">Regional Itapevi</p>
+      <button id="entrar-btn" class="btn-primary btn-landing">
+        <span class="icon">🚀</span> ENTRAR NO SISTEMA
+      </button>
     </div>
-  </header>
+  </div>
 
-  <div class="container">
+  <div id="app-content" style="display: none;">
+    <header class="header">
+      <div class="header-content">
+        <img src="assets/logo-ccb.png" alt="CCB" class="header-logo-compact">
+        <div class="header-text-compact">
+          <h1 class="compact-title">SISTEMA CONTAGEM</h1>
+          <p class="header-subtitle">Ministério - Regional Itapevi</p>
+        </div>
+      </div>
+    </header>
+
+    <div class="container">
     <!-- Navigation Tabs -->
     <div class="tabs">
       <button class="tab-button active" data-tab="register">
@@ -1202,5 +1298,7 @@
     </div>
   </div>
 
+    </div>
+  </div>
 </body>
 </html>
